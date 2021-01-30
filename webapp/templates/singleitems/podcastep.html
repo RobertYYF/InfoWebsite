@@ -1,0 +1,41 @@
+{% include 'top.html' %}
+<div class="content">
+    <div class="container details">
+ 		<!-- TODO Query 7
+        Display All Relevant Podcast Episode Infromation including meta data
+		-->
+		<!-- First check if the media id corresponds to a valid podcastEps-->
+        {% if podcastEps | length > 0 %}
+            <h2 class="title"> {{podcastEps[0].podcast_episode_title}} ({{podcastEps[0].podcast_episode_published_date}})</h2>
+			<hr/>
+			<h3> Episode Link: <a href={{podcastEps[0].podcast_episode_uri}}>{{podcastEps[0].podcast_episode_title}}</a> </h3>
+            <h3> Episode Length: {{podcastEps[0].podcast_episode_length}} seconds </h3>
+            <h3> Artworks </h3>
+            {% for instance in podcastEps %}
+                {% if instance.md_type_name == 'artwork' %}
+                    <img src="{{instance.md_value}}" alt="image" width="300" height="300">
+                    <br/>© Amazon Public Domain 2019.
+                {% endif %}
+            {% endfor %}
+            <br/>
+            <h3> Descriptions </h3>
+            {% for instance in podcastEps %}
+                {% if instance.md_type_name == 'description' %}
+                    <div>
+                        {{instance.md_value}}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <h3> Genres </h3>
+            {% for instance in podcastEps %}
+                {% if instance.md_type_name == 'podcastep genre' %}
+                        {{instance.md_value}}
+                        <br/>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <h2 class="title"> Invalid Podcast Episode ID</h2>
+        {% endif %}
+    </div>
+</div>
+{% include 'bottom.html'%}

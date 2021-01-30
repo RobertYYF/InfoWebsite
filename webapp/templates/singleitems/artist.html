@@ -1,0 +1,30 @@
+{% include 'top.html' %}
+<div class="content">
+    <div class="container details">
+        <!-- Check if We have a valid Artist -->
+        {% if artist | length > 0 %}
+            <h2 class="title"> {{artist[0].artist_name}} </h2>
+            <hr/>
+            <h3> Artworks </h3>
+            {% for instance in artist %}
+                {% if instance.md_type_name == 'artwork' %}
+                    <img src="{{instance.md_value}}" alt="image" width="300" height="300">
+                    <br/>© Amazon Public Domain 2019.
+                {% endif %}
+            {% endfor %}
+            <br/>
+            <h3> Descriptions </h3>
+            {% for instance in artist %}
+                {% if instance.md_type_name == 'description' %}
+                    <div>
+                        {{instance.md_value}}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <h2 class="title"> Invalid Artist ID</h2>
+        {% endif %}
+
+    </div>
+</div>
+{% include 'bottom.html'%}

@@ -1,0 +1,8 @@
+{% include 'top.html' %}
+{% include 'bottom.html' %}
+<div class="content">
+    <div class="container">
+        <h1 class="title"></h1>
+    </div>
+</div>
+{% include 'bottom.html' %}

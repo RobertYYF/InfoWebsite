@@ -1,0 +1,32 @@
+{% include 'top.html' %}
+<div class="content">
+    <div class="container details">
+        <!-- Check if We have a valid tvshow ep -->
+        {% if tvshowep | length > 0 %}
+            <h2 class="title"> {{tvshowep[0].tvshow_episode_title}} aired on {{tvshowep[0].air_date}} </h2>
+            <br/>
+            <h2 class="title"> Season {{tvshowep[0].season}}, Episode {{tvshowep[0].episode}} </h2>
+            <br/>
+            
+            <h3> Artworks </h3>
+            {% for instance in tvshowep %}
+                {% if instance.md_type_name == 'artwork' %}
+                    <img src="{{instance.md_value}}" alt="image">
+                    <br/>© Amazon Public Domain 2019.
+                {% endif %}
+            {% endfor %}
+            <br/>
+            <h3> Descriptions </h3>
+            {% for instance in tvshowep %}
+                {% if instance.md_type_name == 'description' %}
+                    <div>
+                        {{instance.md_value}}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <h2 class="title"> Invalid Podcast Ep ID</h2>
+        {% endif %}
+    </div>
+</div>
+{% include 'bottom.html'%}

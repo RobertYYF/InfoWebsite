@@ -1,0 +1,37 @@
+{% include 'top.html' %}
+<div class="content">
+    <div class="container details">
+        <h2 class="title"> All Movies</h2>
+        <hr/>
+        {% if session.logged_in %}
+        <a class="pure-button" href="{{ url_for('add_movie')}}">Add Movie</a>
+        {% endif %}
+        <div>
+        <!-- All Movies -->
+            <table class="styled">
+                <thead>
+                    <tr>
+                        <td>Movie ID</td>
+                        <td>Movie Name</td>
+                        <td>Movie Release Year</td>
+                        <td>Movie Metadata Count</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for instance in allmovies %}
+                        <!-- Each row is a link to each individual movie page -->
+                        <tr class="clickable-tr" data-href="{{ url_for('single_movie', movie_id=instance.movie_id)}}">
+                            <td style="text-align: center">{{ instance.movie_id }}</td>
+                            <td>{{instance.movie_title}}</td>
+                            <td>{{instance.release_year}}</td>
+                            <td>{{instance.count}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+    
+            </table>
+    
+        </div>
+    </div>
+</div>
+{% include 'bottom.html'%}

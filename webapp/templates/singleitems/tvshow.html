@@ -1,0 +1,67 @@
+{% include 'top.html' %}
+<div class="content">
+    <div class="container details">
+        <!-- Check if We have a valid TV Show -->
+        {% if tvshow | length > 0 %}
+            <h2 class="title"> {{tvshow[0].tvshow_title}}</h2>
+            <hr/>
+            <h3> Artworks </h3>
+            {% for instance in tvshow %}
+                {% if instance.md_type_name == 'artwork' %}
+                    <img src="{{instance.md_value}}" alt="image" width="300" height="300">
+                    <br/>© Amazon Public Domain 2019.
+                {% endif %}
+            {% endfor %}
+            <br/>
+            <h3> Descriptions </h3>
+            {% for instance in tvshow %}
+                {% if instance.md_type_name == 'description' %}
+                    <div>
+                        {{instance.md_value}}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <br/>
+            <h3> Genres </h3>
+            {% for instance in tvshow %}
+                {% if instance.md_type_name == 'film genre' %}
+                    <div>
+                        {{instance.md_value}}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <div>
+                <!-- TV Show Episodes -->
+                <h3>Episodes for this TV Show</h3>
+                <table class="styled">
+                    <thead>
+                        <tr>
+                            <td>TV Show Episode Media ID</td>
+                            <td>TV Show Episode Title</td>
+                            <td>Season</td>
+                            <td>Episode</td>
+                            <td>Air Date</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for instance in tvshoweps %}
+                        <tr class="clickable-tr" data-href="{{ url_for('single_tvshowep', tvshowep_id=instance.media_id)}}">
+                            <td style="text-align: center">{{ instance.media_id }}</td>
+                            <td>{{instance.tvshow_episode_title}}</td>
+                            <td>{{instance.season}}</td>
+                            <td>{{instance.episode}}</td>
+                            <td>{{instance.air_date}}</td>
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+        
+                </table>
+        
+            </div>
+        {% else %}
+            <h2 class="title"> Invalid TV Show ID</h2>
+        {% endif %}
+    </div>
+</div>
+{% include 'bottom.html'%}

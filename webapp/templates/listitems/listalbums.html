@@ -1,0 +1,35 @@
+{% include 'top.html' %}
+<div class="content">
+    <div class="container details">
+        <h2 class="title"> All Albums</h2>
+        <hr/>
+        <div>
+        <!-- All Albums -->
+            <table class="styled">
+                <thead>
+                    <tr>
+                        <td>Album ID</td>
+                        <td>Album Name</td>
+                        <td>Album Song Count</td>
+                        <td>Album Artists</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for instance in allalbums %}
+                        <!-- Each row is a link to each individual album page -->
+                        <tr class="clickable-tr" data-href="{{ url_for('single_album', album_id=instance.album_id)}}">
+                            <td style="text-align: center">{{ instance.album_id }}</td>
+                            <td>{{instance.album_title}}</td>
+                            <td>{{instance.count}}</td>
+                            <td>{{instance.artists}}</td>
+
+                        </tr>
+                    {% endfor %}
+                </tbody>
+    
+            </table>
+    
+        </div>
+    </div>
+</div>
+{% include 'bottom.html'%}

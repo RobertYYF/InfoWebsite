@@ -1,0 +1,29 @@
+{% include 'top.html' %}
+<div class="content">
+    <div class="container details">
+        <h2 class="title"> All Artists</h2>
+        <div>
+        <!-- All Artists -->
+            <table class="styled"  id="funtable">
+                <thead>
+                    <tr>
+                        <td>Artist ID</td>
+                        <td></a>Artist Name</td>
+                        <td>Artist Associated Metadata Count</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for instance in allartists %}
+                        <!-- Each row is a link to each individual artist page -->
+                        <tr class="clickable-tr" data-href="{{ url_for('single_artist', artist_id=instance.artist_id)}}">
+                            <td style="text-align: center">{{ instance.artist_id }}</td>
+                            <td>{{instance.artist_name}}</td>
+                            <td>{{instance.count}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% include 'bottom.html'%}

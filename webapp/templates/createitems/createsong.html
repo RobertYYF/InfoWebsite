@@ -1,0 +1,56 @@
+{% include 'top.html' %}
+<div class="content">
+    <div class="container details">
+
+        <h2 class="title"> Add Song </h2>
+
+        <!-- Song Schema
+            CREATE TABLE Song (
+                song_id INTEGER PRIMARY KEY REFERENCES AudioMedia(media_id),
+                song_title VARCHAR(100),
+                length INTEGER
+            );
+            Associated Media_id information
+                - storage location
+            Associated Artist information
+                - artist_id
+            Associated Meta data
+                - description (4)
+                - song_genre (1)
+                - artwork (3)
+        -->
+        <!-- Query 9
+            TODO
+            Add Song
+            You will need to create a form for taking in input. Remember the input has to be valid,
+            so you will have to check the data somewhere. The best way is to pass any relevant information that is
+            needed to this page (such as artists, metadata type id's or values) and then manage the display similar to what is
+            done in the drop down menu for the search bar
+        -->
+        <form class="Add" method="POST" action="{{url_for('add_song')}}">
+
+            Song title: <input type="text" name="song_title" placeholder="song name">
+            Song length: <input type="text" name="songlength" placeholder="0">
+            <br/>
+            Storage location: <input type="text" name="location" placeholder="Storage location">
+            Description: <input type="text" name="songdescription" placeholder="Description">
+            <br/>
+            Artist Id: <input type="text" name="artist_id" placeholder="0">
+            Song Genre: <input type="text" name="song_genre" placeholder="None">
+            <br/>
+            Artwork: <input type="text" name="artwork" value="notfound.png" placeholder="notfound.png">
+            <br/>
+            <button class="flat" type="submit">Add</button>
+            <br/>
+            <hr/>
+            <hr/>
+            <hr/>
+
+
+        </form>
+        <br/>
+        <div>
+
+    </div>
+</div>
+{% include 'bottom.html'%}

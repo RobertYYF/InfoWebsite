@@ -1,0 +1,45 @@
+{% include 'top.html' %}
+<div class="content">
+    <div class="container details">
+
+        <h2 class="title"> Add Movie </h2>
+
+        <!-- Movie Schema 
+            CREATE TABLE Movie (
+            movie_id INTEGER REFERENCES VideoMedia(media_id) PRIMARY KEY,
+            movie_title VARCHAR(250),
+            release_year SMALLINT -- more appropriate to use an int/numeric here than a date since it's just a year value
+            ); 
+            Associated Media_id information
+                - storage location
+            Associated Meta data
+                - description (4)
+                - film_genre (2)
+                - artwork (3)
+            
+        -->
+        <form class="Add" method="POST" action="{{url_for('add_movie')}}">
+
+            Movie title: <input type="text" name="movie_title" value="Empty Movie" placeholder="Movie name">
+            Release Year: <input type="text" name="release_year" value="0" placeholder="2019">
+            <br/>
+            Storage location: <input type="text" name="storage_location" value="no location" placeholder="Storage location">
+            Description: <input type="text" name="description" value="no description" placeholder="Description">
+            <br/>
+            Film Genre: <input type="text" name="film_genre" value="drama" placeholder="drama">
+            Artwork: <input type="text" name="artwork" value="notfound.png" placeholder="notfound.png">
+            <br/>
+            <button class="flat" type="submit">Add</button>
+            <br/>
+            <hr/>
+            <hr/>
+            <hr/>
+            
+
+        </form>
+        <br/>
+        <div>
+
+    </div>
+</div>
+{% include 'bottom.html'%}

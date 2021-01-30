@@ -1,0 +1,89 @@
+{% include 'top.html' %}
+<div class="content">
+    <div class="container details">
+        <h1 class="title"> Welcome, {{ user['username'] }}</h1>
+        <hr/>
+        <div>
+            <h2 class="containertitle"> Your playlists</h2>
+        <!-- Users Playlists -->
+            <table class="styled">
+                <thead>
+                    <tr>
+                        <td>Playlist ID</td>
+                        <td>Playlist Name</td>
+                        <td>Items</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for instance in playlists %}
+                    <tr>
+                        <td style="text-align: center">{{ instance.collection_id }}</td>
+                        <td>{{instance.collection_name}}</td>
+                        <td>{{ instance.count }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+    
+            </table>
+    
+        </div>
+        <div>
+            <h2 class="containertitle"> Your Podcasts</h2>
+            <!-- User Podcast subscriptions -->
+            <table class="styled">
+                    <thead>
+                        <tr>
+                            <td>Podcast ID</td>
+                            <td>Title</td>
+                            <td>URI</td>
+                            <td>Last Updated</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for instance in subpodcasts %}
+                        <tr class="clickable-tr" data-href="{{ url_for('single_podcast', podcast_id=instance.podcast_id)}}">
+                            <td style="text-align: center">{{ instance.podcast_id }}</td>
+                            <td>{{instance.podcast_title}}</td>
+                            <td>{{ instance.podcast_uri }}</td>
+                            <td>{{instance.podcast_last_updated}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+    
+
+        </div>
+        <div>
+            <h2 class="containertitle"> Your most recent viewed items</h2>
+            <!-- User currently viewing -->
+            <table class="styled">
+                    <thead>
+                        <tr>
+                            <td>Media ID</td>
+                            <td>Playcount</td>
+                            <td>Progress</td>
+                            <td>Lastviewed</td>
+                            <td>Storage Location</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for instance in usercurrent %}
+                        <tr>
+                            <td style="text-align: center">{{ instance.media_id }}</td>
+                            <td>{{ instance.playcount }}</td>
+                            <td>{{ instance.progress }}</td>
+                            <td>{{ instance.lastviewed }}</td>
+                            <td>{{ instance.storage_location }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+        
+    
+
+        </div>
+
+
+    </div>
+</div>
+{% include 'bottom.html'%}

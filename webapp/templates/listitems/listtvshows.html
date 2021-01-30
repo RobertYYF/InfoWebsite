@@ -1,0 +1,32 @@
+{% include 'top.html' %}
+<div class="content">
+    <div class="container details">
+        <h2 class="title"> All TV Shows</h2>
+        <hr/>
+        <div>
+        <!-- All TV Shows -->
+            <table class="styled">
+                <thead>
+                    <tr>
+                        <td>TV Show ID</td>
+                        <td>TV Show Name</td>
+                        <td>TV Show Episode Count</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for instance in alltvshows %}
+                        <!-- Each row is a link to each individual tvshow page -->
+                        <tr class="clickable-tr" data-href="{{ url_for('single_tvshow', tvshow_id=instance.tvshow_id)}}">
+                            <td style="text-align: center">{{ instance.tvshow_id }}</td>
+                            <td>{{instance.tvshow_title}}</td>
+                            <td>{{instance.count}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+    
+            </table>
+    
+        </div>
+    </div>
+</div>
+{% include 'bottom.html'%}
